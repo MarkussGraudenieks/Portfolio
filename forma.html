@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mans portfolio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+        <link rel="stylesheet" href="css/mansStils.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-content" style="max-width:1500px">
+
+            <!-- Header -->
+            <header class="w3-bar w3-center w3-opacity" style="padding:128px 16px">
+                <h1 class="w3-xlarge">Mans portfolio</h1>
+                <h1>Markuss Raudenieks</h1>
+            </header>
+
+            <!-- Photo Grid -->
+            <section>
+                <h1>Formas un ievadlauku piemērs</h1>
+                <form>
+                    <p>Šodienas datums <input name="datums"></p>
+                    <p>Ja gribi uzzināt šodienas datumu, spied pogu DATUMS 
+                        <input onclick="datums.value = new Date();" name="poga" value="DATUMS" type="button">
+                    </p>
+                    <p>Ja gribi izdzēst datumua lodziņa saturu, spied pogu RESET
+                        <input value="RESET" type="reset">
+                    </p>
+                </form>
+                <form>
+                    <div>1.skaitlis<input type="text" name="sk1"> </div>
+
+
+                    <input value="+" name="sask" onclick="rez.value = Number(sk1.value) + Number(sk2.value)" type="button">
+
+
+                    <input value="-" name="atnem" onclick="rez.value = Number(sk1.value) - Number(sk2.value)" type="button">
+
+
+                    <input value="X" name="reiz" onclick="rez.value = sk1.value * sk2.value" type="button">
+
+
+                    <input value=":" name="dal" onclick="rez.value = sk1.value / sk2.value" type="button">
+
+
+                    <div>2.skaitlis<input type="text" name="sk2"> </div>
+                    <hr>
+                    <div>Rezultāts<input name="rez"> </div>
+                    <button type="RESET">Reset</button>
+                </form>
+            </section>
+
+
+            <!-- End Page Content -->
+        </div>
+
+        <!-- Footer -->
+        <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large">
+            <h3>Uzdevumi par formu apstrādi ar JavaScript</h3>
+            <ol>
+                <li><a href="forma.html">Uzdevums "forma.html"</a></li>
+                <li><a href="dzerdaudz.html">Uzdevums "dzerdaudz.html"</a></li>
+                <li><a href="dzer.html">Uzdevums "dzer.html"</a></li>
+            </ol>
+        </footer>
+
+        <!-- Floating navbar -->
+        <div class="w3-padding-32" id="navigacija">
+            <div class="w3-bar w3-border">
+                <a href="index.html" class="w3-bar-item w3-button">Sākums</a>
+                <a href="index.html#tekstapstrade" class="w3-bar-item w3-button">Tekstapstrāde</a>
+                <a href="index.html#atteluapstrade" class="w3-bar-item w3-button">Attēlu apstrāde</a>
+                <a href="index.html#3d" class="w3-bar-item w3-button">3D Modelēšana</a>
+                <a href="index.html#video" class="w3-bar-item w3-button">Video</a>
+                <a href="index.html#izklajlapas" class="w3-bar-item w3-button">Izklājlapas</a>
+                <a href="otrais.html" class="w3-bar-item w3-button">Ļaunatūra</a>
+            </div>
+        </div>
+
+    </body>
+</html>

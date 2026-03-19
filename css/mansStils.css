@@ -1,0 +1,64 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Mar 19, 2026, 9:53:37 PM
+    Author     : rudolfs
+*/
+
+img {
+    max-height: 80vh;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+}
+
+footer > ol {
+    list-style: none;
+    padding-left: 0;
+}
+
+body,h1 {
+    font-family: "Raleway", Arial, sans-serif
+}
+h1 {
+    letter-spacing: 6px
+}
+.w3-row-padding img {
+    margin-bottom: 12px
+}
+
+#navigacija {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 0 !important;
+}
+
+#navigacija > div {
+    background-color: white;
+    width: 100vw;
+    overflow-x: auto;
+}
+
+.w3-content {
+    padding: 0 2em;
+}
+
+h1, h2, h3, h4 {
+    text-align: center;
+}
+
+section {
+    margin-bottom:128px;
+}
+
+.centered {
+    margin: auto;
+}
+
+body {
+    background-image: url(../images/background.png);
+}
