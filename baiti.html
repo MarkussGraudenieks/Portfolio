@@ -1,52 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="lv">
 <head>
     <meta charset="UTF-8">
-    <title>Aprēķins</title>
+    <title>TestWeb uzdevumi</title>
 </head>
 <body>
 
-<form id="forma">
-    <p>Aprēķināt cik daudz informācijas var lejupielādēt</p>
+<h2>Aprēķini cik daudz informācijas var lejupielādēt</h2>
 
-    <input type="number" id="sekundes" placeholder="Sekundes" 
-           onfocus="this.form.reset()" oninput="aprekinat()">
+<form id="forma">
+
+    Sekundes:
+    <input type="number" id="sekundes"><br><br>
+
+    Atbilde:
+    <input type="text" id="rezultats" readonly><br><br>
+
+    <input type="radio" name="vieniba" value="KiB"> KiB
+    <input type="radio" name="vieniba" value="KB" checked> KB
     <br><br>
 
-    <p>Atbilde:</p>
-    <input type="text" id="rezultats" readonly>
-    <br>
+    <button type="button" onclick="aprekinat()">Aprēķināt</button>
+    <button type="reset">Notīrīt</button>
 
-    <label>
-        <input type="radio" name="vieniba" value="KB" checked onchange="aprekinat()"> KB
-    </label>
-    <label>
-        <input type="radio" name="vieniba" value="KiB" onchange="aprekinat()"> KiB
-    </label>
 </form>
 
 <script>
 function aprekinat() {
-    let s = document.getElementById("sekundes").value;
+    let sekundes = document.getElementById("sekundes").value;
 
-    if (s === "") {
-        document.getElementById("rezultats").value = "";
-        return;
+    // 25 Mbps → 3125 KB/s
+    let kb = sekundes * 3125;
+
+    let vienibas = document.getElementsByName("vieniba");
+    let izvele;
+
+    for (let i = 0; i < vienibas.length; i++) {
+        if (vienibas[i].checked) {
+            izvele = vienibas[i].value;
+        }
     }
-
-    let biti = s * 25 * 1000000;
-    let baiti = biti / 8;
-
-    let vieniba = document.querySelector('input[name="vieniba"]:checked').value;
 
     let rezultats;
-    if (vieniba === "KB") {
-        rezultats = baiti / 1000;
+
+    if (izvele === "KiB") {
+        rezultats = kb * 0.9765625; // KB → KiB
     } else {
-        rezultats = baiti / 1024;
+        rezultats = kb;
     }
 
-    document.getElementById("rezultats").value = Math.round(rezultats);
+    document.getElementById("rezultats").value = rezultats;
 }
 </script>
 
