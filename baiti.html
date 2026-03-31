@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form id="forma" onsubmit="aprekinat(); return false;">
+<form id="forma">
 
     Aprēķināt cik daudz informācijas var lejupielādēt
     <input type="number" id="sekundes"> sekundēs, ja interneta ātrums ir 25 Mbps.
@@ -17,8 +17,8 @@
 
     <input type="text" id="rezultats" readonly>
 
-    <input type="radio" name="vieniba" value="KiB"> KiB
-    <input type="radio" name="vieniba" value="KB"> KB
+    <input type="radio" name="vieniba" value="KiB" onclick="aprekinat()"> KiB
+    <input type="radio" name="vieniba" value="KB" onclick="aprekinat()"> KB
 
 </form>
 
@@ -31,6 +31,8 @@ function aprekinat() {
     for (let r of radios) {
         if (r.checked) vieniba = r.value;
     }
+
+    if (sek === "") return;
 
     let biti = 25 * 1000000 * sek;
     let baiti = biti / 8;
@@ -46,7 +48,7 @@ function aprekinat() {
     document.getElementById("rezultats").value = rezultats;
 }
 
-// reset kad uziet uz lauka
+// 15. uzdevums — reset uz focus
 document.getElementById("sekundes").addEventListener("focus", function() {
     document.getElementById("forma").reset();
 });
