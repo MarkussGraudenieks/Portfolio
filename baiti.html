@@ -1,91 +1,56 @@
 <!DOCTYPE html>
-<html lang="lv">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Datu aprēķins</title>
-    <script>
-        function aprekinat(rezultataLauks, lauksSekundes, vieniba) {
-            let sekundes = parseFloat(document.getElementById(lauksSekundes).value);
-
-            if (isNaN(sekundes) || sekundes <= 0) {
-                alert("Ievadi korektu sekunžu skaitu!");
-                return;
-            }
-
-            let atrums = 25 * 1000000; // 25 Mbps bitos
-            let baiti = (atrums * sekundes) / 8;
-
-            let rezultats;
-            if (vieniba === "KB") {
-                rezultats = baiti / 1000;
-            } else {
-                rezultats = baiti / 1024;
-            }
-
-            document.getElementById(rezultataLauks).value = rezultats.toFixed(2);
-        }
-
-        // notīra VISUS laukus
-        function notiritVisu() {
-            document.getElementById("sek1").value = "";
-            document.getElementById("rez1").value = "";
-            document.getElementById("sek2").value = "";
-            document.getElementById("rez2").value = "";
-        }
-    </script>
+    <title>Aprēķins</title>
 </head>
 <body>
 
-<h2>1. aprēķins</h2>
-<p>Aprēķināt cik daudz informācijas var lejupielādēt</p>
+<form id="forma">
+    <p>Aprēķināt cik daudz informācijas var lejupielādēt</p>
 
-<input type="number" id="sek1" placeholder="Sekundes" onmouseover="notiritVisu()">
-<br><br>
+    <input type="number" id="sekundes" placeholder="Sekundes" 
+           onfocus="this.form.reset()">
+    <br><br>
 
-<label>
-    <input type="radio" name="vieniba1" value="KB" checked> KB
-</label>
-<label>
-    <input type="radio" name="vieniba1" value="KiB"> KiB
-</label>
+    <button type="button" onclick="aprekinat()">Aprēķināt</button>
 
-<br><br>
+    <p>Atbilde:</p>
+    <input type="text" id="rezultats" readonly>
+    <br>
 
-<button onclick="aprekinat('rez1','sek1', document.querySelector('input[name=vieniba1]:checked').value)">
-    Aprēķināt
-</button>
+    <label>
+        <input type="radio" name="vieniba" value="KB" checked> KB
+    </label>
+    <label>
+        <input type="radio" name="vieniba" value="KiB"> KiB
+    </label>
+</form>
 
-<br><br>
+<script>
+function aprekinat() {
+    let s = document.getElementById("sekundes").value;
 
-Atbilde:
-<input type="text" id="rez1" readonly>
+    if (s === "") {
+        document.getElementById("rezultats").value = "";
+        return;
+    }
 
+    let biti = s * 25 * 1000000;
+    let baiti = biti / 8;
 
-<hr>
+    let vieniba = document.querySelector('input[name="vieniba"]:checked').value;
 
-<h2>2. aprēķins</h2>
-<p>Aprēķināt cik daudz informācijas var lejupielādēt</p>
+    let rezultats;
+    if (vieniba === "KB") {
+        rezultats = baiti / 1000;
+    } else {
+        rezultats = baiti / 1024;
+    }
 
-<input type="number" id="sek2" placeholder="Sekundes" onmouseover="notiritVisu()">
-<br><br>
-
-<label>
-    <input type="radio" name="vieniba2" value="KB" checked> KB
-</label>
-<label>
-    <input type="radio" name="vieniba2" value="KiB"> KiB
-</label>
-
-<br><br>
-
-<button onclick="aprekinat('rez2','sek2', document.querySelector('input[name=vieniba2]:checked').value)">
-    Aprēķināt
-</button>
-
-<br><br>
-
-Atbilde:
-<input type="text" id="rez2" readonly>
+    document.getElementById("rezultats").value = Math.round(rezultats);
+}
+</script>
 
 </body>
 </html>
