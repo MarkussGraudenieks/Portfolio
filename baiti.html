@@ -1,56 +1,80 @@
 <!DOCTYPE html>
 <html lang="lv">
 <head>
-    <meta charset="UTF-8">
-    <title>TestWeb uzdevumi</title>
+<meta charset="UTF-8">
+<title>Baiti</title>
+<style>
+    body { font-family: Arial; }
+    input { margin: 5px; }
+</style>
 </head>
 <body>
 
-<h2>Aprēķini cik daudz informācijas var lejupielādēt</h2>
+<h3>Aprēķināt cik daudz informācijas var lejupielādēt</h3>
 
 <form id="forma">
 
-    Sekundes:
-    <input type="number" id="sekundes"><br><br>
+    <!-- Sekundes -->
+    <input type="number" id="sekundes" placeholder="Sekundes"> sekundēs, ja interneta ātrums ir 25 Mbps.
+    
+    <br><br>
 
-    Atbilde:
-    <input type="text" id="rezultats" readonly><br><br>
+    <h4>Atbilde</h4>
 
-    <input type="radio" name="vieniba" value="KiB"> KiB
-    <input type="radio" name="vieniba" value="KB" checked> KB
+    <!-- Atbilde -->
+    <input type="text" id="rezultats" readonly>
+
+    <!-- Radio pogas -->
+    <label>
+        <input type="radio" name="vieniba" value="KiB"> KiB
+    </label>
+    <label>
+        <input type="radio" name="vieniba" value="KB"> KB
+    </label>
+
     <br><br>
 
     <button type="button" onclick="aprekinat()">Aprēķināt</button>
-    <button type="reset">Notīrīt</button>
 
 </form>
 
 <script>
 function aprekinat() {
-    let sekundes = document.getElementById("sekundes").value;
+    let sek = document.getElementById("sekundes").value;
+    let radios = document.getElementsByName("vieniba");
+    let vieniba = "";
 
-    // 25 Mbps → 3125 KB/s
-    let kb = sekundes * 3125;
-
-    let vienibas = document.getElementsByName("vieniba");
-    let izvele;
-
-    for (let i = 0; i < vienibas.length; i++) {
-        if (vienibas[i].checked) {
-            izvele = vienibas[i].value;
+    for (let r of radios) {
+        if (r.checked) {
+            vieniba = r.value;
         }
     }
 
+    if (sek === "" || vieniba === "") {
+        alert("Ievadi datus!");
+        return;
+    }
+
+    // 25 Mbps = 25,000,000 biti sekundē
+    // /8 = baiti
+    let biti = 25 * 1000000 * sek;
+    let baiti = biti / 8;
+
     let rezultats;
 
-    if (izvele === "KiB") {
-        rezultats = kb * 0.9765625; // KB → KiB
+    if (vieniba === "KB") {
+        rezultats = baiti / 1000;
     } else {
-        rezultats = kb;
+        rezultats = baiti / 1024;
     }
 
     document.getElementById("rezultats").value = rezultats;
 }
+
+// 15. uzdevums – reset, kad fokusē ievadlaukā
+document.getElementById("sekundes").addEventListener("focus", function() {
+    document.getElementById("forma").reset();
+});
 </script>
 
 </body>
