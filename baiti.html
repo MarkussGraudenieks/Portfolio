@@ -3,38 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Baiti</title>
-<style>
-    body { font-family: Arial; }
-    input { margin: 5px; }
-</style>
 </head>
 <body>
 
-<h3>Aprēķināt cik daudz informācijas var lejupielādēt</h3>
+<form id="forma" onsubmit="aprekinat(); return false;">
 
-<form id="forma">
+    Aprēķināt cik daudz informācijas var lejupielādēt
+    <input type="number" id="sekundes"> sekundēs, ja interneta ātrums ir 25 Mbps.
 
-    <!-- Sekundes -->
-    <input type="number" id="sekundes" placeholder="Sekundes"> sekundēs, ja interneta ātrums ir 25 Mbps.
-    
     <br><br>
 
-    <h4>Atbilde</h4>
+    Atbilde<br>
 
-    <!-- Atbilde -->
     <input type="text" id="rezultats" readonly>
 
-    <!-- Radio pogas -->
-    <label>
-        <input type="radio" name="vieniba" value="KiB"> KiB
-    </label>
-    <label>
-        <input type="radio" name="vieniba" value="KB"> KB
-    </label>
-
-    <br><br>
-
-    <button type="button" onclick="aprekinat()">Aprēķināt</button>
+    <input type="radio" name="vieniba" value="KiB"> KiB
+    <input type="radio" name="vieniba" value="KB"> KB
 
 </form>
 
@@ -45,18 +29,9 @@ function aprekinat() {
     let vieniba = "";
 
     for (let r of radios) {
-        if (r.checked) {
-            vieniba = r.value;
-        }
+        if (r.checked) vieniba = r.value;
     }
 
-    if (sek === "" || vieniba === "") {
-        alert("Ievadi datus!");
-        return;
-    }
-
-    // 25 Mbps = 25,000,000 biti sekundē
-    // /8 = baiti
     let biti = 25 * 1000000 * sek;
     let baiti = biti / 8;
 
@@ -71,7 +46,7 @@ function aprekinat() {
     document.getElementById("rezultats").value = rezultats;
 }
 
-// 15. uzdevums – reset, kad fokusē ievadlaukā
+// reset kad uziet uz lauka
 document.getElementById("sekundes").addEventListener("focus", function() {
     document.getElementById("forma").reset();
 });
