@@ -10,20 +10,18 @@
     <p>Aprēķināt cik daudz informācijas var lejupielādēt</p>
 
     <input type="number" id="sekundes" placeholder="Sekundes" 
-           onfocus="this.form.reset()">
+           onfocus="this.form.reset()" oninput="aprekinat()">
     <br><br>
-
-    <button type="button" onclick="aprekinat()">Aprēķināt</button>
 
     <p>Atbilde:</p>
     <input type="text" id="rezultats" readonly>
     <br>
 
     <label>
-        <input type="radio" name="vieniba" value="KB" checked> KB
+        <input type="radio" name="vieniba" value="KB" checked onchange="aprekinat()"> KB
     </label>
     <label>
-        <input type="radio" name="vieniba" value="KiB"> KiB
+        <input type="radio" name="vieniba" value="KiB" onchange="aprekinat()"> KiB
     </label>
 </form>
 
