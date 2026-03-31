@@ -1,25 +1,56 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
--->
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-       <form>
-           <label> Cik daudz informācijas var lejuplādēt:</label><br><br>
-           <input type="text" placeholder="sekundes"> sekundes ja interneta ātrums ir 25mbps.
-           <br><br>
-           <label> Atbilde:</label><br><br>
-            <input type="text"> <br><br>
-           
-            <input type="radio" name="unit">Kb
-             <input type="radio" name="unit">Kib
-             </form>
-           
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Aprēķins</title>
+</head>
+<body>
+
+<p>Aprēķināt cik daudz informācijas var lejupielādēt</p>
+
+<input type="number" id="sekundes" placeholder="Sekundes" oninput="aprekinat()">
+<br><br>
+
+<p>Atbilde:</p>
+<input type="text" id="rezultats" readonly>
+<br>
+
+<label>
+    <input type="radio" name="vieniba" value="KB" checked onchange="aprekinat()"> KB
+</label>
+
+<label>
+    <input type="radio" name="vieniba" value="KiB" onchange="aprekinat()"> KiB
+</label>
+
+<script>
+function aprekinat() {
+    let s = document.getElementById("sekundes").value;
+
+    if (s === "") {
+        document.getElementById("rezultats").value = "";
+        return;
+    }
+
+    // 25 Mbps → biti
+    let biti = s * 25 * 1000000;
+
+    // biti → baiti
+    let baiti = biti / 8;
+
+    let vieniba = document.querySelector('input[name="vieniba"]:checked').value;
+
+    let rezultats;
+
+    if (vieniba === "KB") {
+        rezultats = baiti / 1000;
+    } else {
+        rezultats = baiti / 1024;
+    }
+
+    document.getElementById("rezultats").value = Math.round(rezultats);
+}
+</script>
+
+</body>
 </html>
