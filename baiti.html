@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<title>Baiti</title>
+</head>
+<body>
+
+<form id="forma">
+
+    Aprēķināt cik daudz informācijas var lejupielādēt
+    <input type="number" id="sekundes"> sekundēs, ja interneta ātrums ir 25 Mbps.
+
+    <br><br>
+
+    Atbilde<br>
+
+    <input type="text" id="rezultats" readonly>
+
+    <input type="radio" name="vieniba" value="KiB" onclick="aprekinat()"> KiB
+    <input type="radio" name="vieniba" value="KB" onclick="aprekinat()"> KB
+
+</form>
+
+<script>
+function aprekinat() {
+    let sek = document.getElementById("sekundes").value;
+    let radios = document.getElementsByName("vieniba");
+    let vieniba = "";
+
+    for (let r of radios) {
+        if (r.checked) vieniba = r.value;
+    }
+
+    if (sek === "") return;
+
+    let biti = 25 * 1000000 * sek;
+    let baiti = biti / 8;
+
+    let rezultats;
+
+    if (vieniba === "KB") {
+        rezultats = baiti / 1000;
+    } else {
+        rezultats = baiti / 1024;
+    }
+
+    document.getElementById("rezultats").value = rezultats;
+}
+
+// 15. uzdevums — reset uz focus
+document.getElementById("sekundes").addEventListener("focus", function() {
+    document.getElementById("forma").reset();
+});
+</script>
+
+</body>
+</html>
